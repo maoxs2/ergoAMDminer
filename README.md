@@ -1,23 +1,41 @@
 # ergoAMDminer
-AMD miner for [ergoplatform.com](https://github.com/ergoplatform)
+OpenCL miner for [ergoplatform.com](https://github.com/ergoplatform)
 
 You can find CUDA miner at:  [CUDA miner](https://github.com/ergoplatform/Autolykos-GPU-miner/tree/master/secp256k1)
 
-Please note that this is the first release of the AMD miner and needs some optimization for improved hashrate.
+Please note that this is the first release of the OpenCL miner and needs some optimization for improved hashrate.
 
-The code is based on opencl 2.0 so it cannot be used for nvidia gpus.
+Update: hashrate is 19Mh/s for rx570-8g
 
-These files must be in the same folder as .exe file:
+The code is based on opencl 1.2 and tested on RX570.
+
+These files must be in the same folder as Executable file:
   * Miningkernel.cl
   * Prehashkernel.cl
   * Ocldecs.h
   * Ocldefs.h
-  * Libcurl.dll
+  * Libcurl.dll( in windows)
   * Config.json
   
  Change the config.json file with your seed and node's address. For now only use keepPrehash:false.
  
- # Requirements
+ # Requirements (Linux)
+ 
+  1- Installing AMDGPU PRO driver for Ubuntu 
+  
+  2 - Opencl headers
+  
+    $ sudo apt-get install opencl-headers
+  
+  3 - libcurl library: to install run
+  
+    $ apt install libcurl4-openssl-dev
+  
+  4- OpenSSL 1.0.2 library: to install run
+  
+    $ apt install libssl-dev
+  
+ # Requirements (Windows)
  
  1- AMD graphic card with driver installed
  
@@ -27,7 +45,21 @@ These files must be in the same folder as .exe file:
  
  4 - Download OpenSSL 1.0.2 [installer from slproweb.com](https://slproweb.com/download/Win64OpenSSL-1_0_2r.exe)
  
-# for build
+ # Build (Linux)
+ 
+ 
+1- in ErgoOpenCL.cpp file comment 
+
+*#define _TEST_* 
+
+for build miner or uncomment for build tester
+
+2- Change directory to Ubuntu
+ 
+3- Run make 
+ 
+ 
+# Build (Windows)
 using visual studio
 
 add OpenCL , LibCurl , OpenSSl libreries
@@ -61,3 +93,4 @@ in ErgoOpenCL.cpp file comment
 *#define _TEST_* 
 
 for build miner or uncomment for build tester
+
